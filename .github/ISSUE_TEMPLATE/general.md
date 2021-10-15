@@ -4,7 +4,6 @@ about: 汎用的なissueのテンプレート
 title: ""
 labels: ''
 assignees: ''
-milestone: '初期開発'
 ---
 
 # 関連するIssue
