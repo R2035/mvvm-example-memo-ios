@@ -13,7 +13,7 @@ final class EditingMemoViewController: UIViewController {
     private lazy var bodyView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .systemBackground
-        textView.font = .systemFont(ofSize: 11, weight: .regular)
+        textView.font = .preferredFont(forTextStyle: .body)
         textView.textContainer.lineFragmentPadding = 0
         return textView
     }()
