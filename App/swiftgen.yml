@@ -1,5 +1,5 @@
-input_dir: mvvm-example-memo
-output_dir: mvvm-example-memo/Resources
+input_dir: Memo
+output_dir: Memo/Resources
 strings:
   inputs: Resources/Localizable.strings
   outputs:
