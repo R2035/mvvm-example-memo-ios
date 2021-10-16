@@ -19,6 +19,8 @@ internal enum L10n {
   internal enum A02 {
     /// このメモを削除しますか？
     internal static let alertTitleDeleteMemo = L10n.tr("Localizable", "A02.AlertTitleDeleteMemo")
+    /// メモ編集
+    internal static let title = L10n.tr("Localizable", "A02.Title")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

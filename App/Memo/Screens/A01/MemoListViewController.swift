@@ -41,6 +41,12 @@ final class MemoListViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: ViewModel経由で画面遷移する
+        let editingMemoViewController = EditingMemoViewController()
+        navigationController?.pushViewController(editingMemoViewController, animated: true)
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
