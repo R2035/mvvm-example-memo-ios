@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Memo {
+public struct Memo: Hashable {
     public let id: MemoId
 
     public let body: String

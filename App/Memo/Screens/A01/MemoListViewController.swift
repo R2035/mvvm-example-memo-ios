@@ -19,6 +19,19 @@ final class MemoListViewController: UITableViewController, UISearchBarDelegate {
         UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidTouchUpInside))
     }()
 
+    private lazy var dataSource: UITableViewDiffableDataSource<MemoListSection, MemoListItem> = {
+        let dataSource = UITableViewDiffableDataSource<MemoListSection, MemoListItem>(tableView: tableView) { tableView, indexPath, item -> UITableViewCell? in
+            switch item {
+            case let .memo(memo: memo):
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MemoListCell.self)
+                cell.update(body: memo.body)
+                return cell
+            }
+        }
+
+        return dataSource
+    }()
+
     private let viewModel: MemoListViewModel = AppDelegate.assembler.resolver.resolve()
 
     private var cancellables = Set<AnyCancellable>()
@@ -34,12 +47,13 @@ final class MemoListViewController: UITableViewController, UISearchBarDelegate {
         navigationItem.rightBarButtonItem = addButton
 
         tableView.register(cellType: MemoListCell.self)
+        tableView.dataSource = dataSource
 
         searchController.searchBar.delegate = self
 
-        viewModel.memos
-            .sink { [weak self] memos in
-                self?.update(memos: memos)
+        viewModel.sections
+            .sink { [weak self] sections in
+                self?.update(sections: sections)
             }
             .store(in: &cancellables)
 
@@ -48,21 +62,6 @@ final class MemoListViewController: UITableViewController, UISearchBarDelegate {
                 self?.transitionTo(destination: destination)
             }
             .store(in: &cancellables)
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        memos.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let memo = memos[indexPath.row]
-        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MemoListCell.self)
-        cell.update(body: memo.body)
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,10 +90,13 @@ final class MemoListViewController: UITableViewController, UISearchBarDelegate {
         viewModel.addButtonDidTouchUpInside()
     }
 
-    private func update(memos: [Memo]) {
-        // TODO: 差分更新を実装する
-        self.memos = memos
-        tableView.reloadData()
+    private func update(sections: [(MemoListSection, [MemoListItem])]) {
+        var snapshot = NSDiffableDataSourceSnapshot<MemoListSection, MemoListItem>()
+        sections.forEach { section, items in
+            snapshot.appendSections([section])
+            snapshot.appendItems(items)
+        }
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 
     private func transitionTo(destination: MemoListDestination) {

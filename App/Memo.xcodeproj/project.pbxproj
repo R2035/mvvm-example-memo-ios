@@ -37,6 +37,8 @@
 		8E04798A271AF1E9002BCD3E /* MemoListDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E047989271AF1E9002BCD3E /* MemoListDestination.swift */; };
 		8EAC7D77271AF67700110950 /* EditingMemoDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC7D76271AF67700110950 /* EditingMemoDestination.swift */; };
 		8EAC7D79271AF68000110950 /* EditingMemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC7D78271AF68000110950 /* EditingMemoViewModel.swift */; };
+		8EAC7D7B271B7EA000110950 /* MemoListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC7D7A271B7EA000110950 /* MemoListSection.swift */; };
+		8EAC7D7D271B7EA900110950 /* MemoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC7D7C271B7EA900110950 /* MemoListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		8E047989271AF1E9002BCD3E /* MemoListDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListDestination.swift; sourceTree = "<group>"; };
 		8EAC7D76271AF67700110950 /* EditingMemoDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingMemoDestination.swift; sourceTree = "<group>"; };
 		8EAC7D78271AF68000110950 /* EditingMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingMemoViewModel.swift; sourceTree = "<group>"; };
+		8EAC7D7A271B7EA000110950 /* MemoListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListSection.swift; sourceTree = "<group>"; };
+		8EAC7D7C271B7EA900110950 /* MemoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListItem.swift; sourceTree = "<group>"; };
 		9873ED0EC7A4CC439191EAE4 /* Pods-MemoCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemoCore.release.xcconfig"; path = "Target Support Files/Pods-MemoCore/Pods-MemoCore.release.xcconfig"; sourceTree = "<group>"; };
 		B07091FFFE1A49F255EEA8B5 /* Pods-Memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memo.debug.xcconfig"; path = "Target Support Files/Pods-Memo/Pods-Memo.debug.xcconfig"; sourceTree = "<group>"; };
 		D45CA5A2925A1A84365BBD40 /* Pods_MemoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				8E047989271AF1E9002BCD3E /* MemoListDestination.swift */,
+				8EAC7D7C271B7EA900110950 /* MemoListItem.swift */,
+				8EAC7D7A271B7EA000110950 /* MemoListSection.swift */,
 				8E0478C4271A55FD002BCD3E /* MemoListViewController.swift */,
 				8E04796E271A9B3A002BCD3E /* MemoListViewModel.swift */,
 			);
@@ -575,8 +581,10 @@
 				8E0478C5271A55FD002BCD3E /* MemoListViewController.swift in Sources */,
 				8E0478C1271A55FD002BCD3E /* AppDelegate.swift in Sources */,
 				8E0478E8271A791D002BCD3E /* MemoListCell.swift in Sources */,
+				8EAC7D7B271B7EA000110950 /* MemoListSection.swift in Sources */,
 				8E047977271AA197002BCD3E /* EditingMemoViewController.swift in Sources */,
 				8E04798A271AF1E9002BCD3E /* MemoListDestination.swift in Sources */,
+				8EAC7D7D271B7EA900110950 /* MemoListItem.swift in Sources */,
 				8E04796D271A9B18002BCD3E /* AppAssembly.swift in Sources */,
 				8E0478DF271A7286002BCD3E /* Strings.swift in Sources */,
 				8E04796F271A9B3A002BCD3E /* MemoListViewModel.swift in Sources */,

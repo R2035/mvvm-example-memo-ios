@@ -10,7 +10,7 @@ import MemoCore
 import UIKit
 
 final class MemoListViewModel {
-    let memos: AnyPublisher<[Memo], Never>
+    let sections: AnyPublisher<[(MemoListSection, [MemoListItem])], Never>
 
     let destination: AnyPublisher<MemoListDestination, Never>
 
@@ -25,7 +25,8 @@ final class MemoListViewModel {
     private var cancellables = Set<AnyCancellable>()
 
     init(memoRepository: MemoRepository) {
-        memos = _memos
+        sections = _memos
+            .map(MemoListViewModel.getSections(for:))
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 
@@ -64,5 +65,12 @@ final class MemoListViewModel {
 
     func searchBarCancelButtonClicked() {
         _searchText.send("")
+    }
+
+    private static func getSections(for memos: [Memo]) -> [(MemoListSection, [MemoListItem])] {
+        let memoItems = memos.map { MemoListItem.memo(memo: $0) }
+        return [
+            (.memo, memoItems),
+        ]
     }
 }

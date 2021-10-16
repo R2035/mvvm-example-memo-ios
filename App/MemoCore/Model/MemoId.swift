@@ -7,6 +7,6 @@
 
 import Foundation
 
-public struct MemoId {
+public struct MemoId: Hashable {
     public let value: String
 }
