@@ -15,6 +15,8 @@ final class MemoListViewController: UITableViewController {
         UISearchController(searchResultsController: nil)
     }()
 
+    private let viewModel: MemoListViewModel = AppDelegate.assembler.resolver.resolve()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
