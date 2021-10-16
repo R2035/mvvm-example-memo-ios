@@ -15,6 +15,7 @@ final class MemoListCell: UITableViewCell, Reusable {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
 
