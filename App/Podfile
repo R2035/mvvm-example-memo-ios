@@ -1,12 +1,8 @@
-# Uncomment the next line to define a global platform for your project
 platform :ios, '15.0'
+use_frameworks!
+inhibit_all_warnings!
 
 target 'Memo' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-  inhibit_all_warnings!
-
-  # Pods for Memo
   inherit! :search_paths
   pod 'RealmSwift'
   pod 'Reusable'
@@ -14,4 +10,8 @@ target 'Memo' do
   pod 'SwiftFormat/CLI'
   pod 'SwiftGen'
   pod 'SwiftLint'
+end
+
+target 'MemoCore' do
+  inherit! :search_paths
 end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266C413684CF6B1FD001A853 /* Pods_MemoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45CA5A2925A1A84365BBD40 /* Pods_MemoCore.framework */; };
 		66D7DABFC54C78BC6107F842 /* Pods_Memo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C5B5E7D9FD01A63B6E799 /* Pods_Memo.framework */; };
 		8E0478C1271A55FD002BCD3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0478C0271A55FD002BCD3E /* AppDelegate.swift */; };
 		8E0478C3271A55FD002BCD3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0478C2271A55FD002BCD3E /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		371D377BEB43618752DECE08 /* Pods-MemoCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemoCore.debug.xcconfig"; path = "Target Support Files/Pods-MemoCore/Pods-MemoCore.debug.xcconfig"; sourceTree = "<group>"; };
 		4C9C5B5E7D9FD01A63B6E799 /* Pods_Memo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Memo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E0478BD271A55FD002BCD3E /* Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E0478C0271A55FD002BCD3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +61,9 @@
 		8E0478E7271A791D002BCD3E /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		8E047950271A9401002BCD3E /* MemoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MemoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E047952271A9401002BCD3E /* MemoCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoCore.h; sourceTree = "<group>"; };
+		9873ED0EC7A4CC439191EAE4 /* Pods-MemoCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemoCore.release.xcconfig"; path = "Target Support Files/Pods-MemoCore/Pods-MemoCore.release.xcconfig"; sourceTree = "<group>"; };
 		B07091FFFE1A49F255EEA8B5 /* Pods-Memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memo.debug.xcconfig"; path = "Target Support Files/Pods-Memo/Pods-Memo.debug.xcconfig"; sourceTree = "<group>"; };
+		D45CA5A2925A1A84365BBD40 /* Pods_MemoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0917E75F6037C03E76BC7C /* Pods-Memo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memo.release.xcconfig"; path = "Target Support Files/Pods-Memo/Pods-Memo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				266C413684CF6B1FD001A853 /* Pods_MemoCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9C5B5E7D9FD01A63B6E799 /* Pods_Memo.framework */,
+				D45CA5A2925A1A84365BBD40 /* Pods_MemoCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +186,8 @@
 			children = (
 				B07091FFFE1A49F255EEA8B5 /* Pods-Memo.debug.xcconfig */,
 				EE0917E75F6037C03E76BC7C /* Pods-Memo.release.xcconfig */,
+				371D377BEB43618752DECE08 /* Pods-MemoCore.debug.xcconfig */,
+				9873ED0EC7A4CC439191EAE4 /* Pods-MemoCore.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E04795D271A9401002BCD3E /* Build configuration list for PBXNativeTarget "MemoCore" */;
 			buildPhases = (
+				A9317BD38407EEADEF1A6541 /* [CP] Check Pods Manifest.lock */,
 				8E04794B271A9401002BCD3E /* Headers */,
 				8E04794C271A9401002BCD3E /* Sources */,
 				8E04794D271A9401002BCD3E /* Frameworks */,
@@ -390,6 +399,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		A9317BD38407EEADEF1A6541 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MemoCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -607,6 +638,7 @@
 		};
 		8E04795B271A9401002BCD3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 371D377BEB43618752DECE08 /* Pods-MemoCore.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -636,6 +668,7 @@
 		};
 		8E04795C271A9401002BCD3E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9873ED0EC7A4CC439191EAE4 /* Pods-MemoCore.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
