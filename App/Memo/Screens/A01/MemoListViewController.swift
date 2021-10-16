@@ -5,9 +5,9 @@
 //  Created by oe on 2021/10/16.
 //
 
+import Combine
+import MemoCore
 import UIKit
-
-// TODO: 全体的に仮実装なので後で正式な実装に置き換える
 
 /// A01 メモ一覧画面
 final class MemoListViewController: UITableViewController {
@@ -15,7 +15,15 @@ final class MemoListViewController: UITableViewController {
         UISearchController(searchResultsController: nil)
     }()
 
+    private lazy var addButton: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didAddButtonTouchUpInside))
+    }()
+
     private let viewModel: MemoListViewModel = AppDelegate.assembler.resolver.resolve()
+
+    private var cancellables = Set<AnyCancellable>()
+
+    private var memos = [Memo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +31,21 @@ final class MemoListViewController: UITableViewController {
         title = L10n.A01.title
 
         navigationItem.searchController = searchController
+        navigationItem.rightBarButtonItem = addButton
 
         tableView.register(cellType: MemoListCell.self)
+
+        viewModel.memos
+            .sink { [weak self] memos in
+                self?.update(memos: memos)
+            }
+            .store(in: &cancellables)
+
+        viewModel.destination
+            .sink { [weak self] destination in
+                self?.transitionTo(destination: destination)
+            }
+            .store(in: &cancellables)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,19 +53,18 @@ final class MemoListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        memos.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let memo = memos[indexPath.row]
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MemoListCell.self)
-        cell.update(body: "本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文")
+        cell.update(body: memo.body)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: ViewModel経由で画面遷移する
-        let editingMemoViewController = EditingMemoViewController()
-        navigationController?.pushViewController(editingMemoViewController, animated: true)
+        viewModel.didTableViewSelectRowAt(indexPath: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -53,5 +73,23 @@ final class MemoListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         84
+    }
+
+    @objc func didAddButtonTouchUpInside() {
+        viewModel.didAddButtonTouchUpInside()
+    }
+
+    private func update(memos: [Memo]) {
+        // TODO: 差分更新を実装する
+        self.memos = memos
+        tableView.reloadData()
+    }
+
+    private func transitionTo(destination: MemoListDestination) {
+        switch destination {
+        case .editingMemo:
+            let editingMemoViewController = EditingMemoViewController()
+            navigationController?.pushViewController(editingMemoViewController, animated: true)
+        }
     }
 }
