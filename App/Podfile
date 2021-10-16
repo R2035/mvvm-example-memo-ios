@@ -10,8 +10,10 @@ target 'Memo' do
   pod 'SwiftFormat/CLI'
   pod 'SwiftGen'
   pod 'SwiftLint'
+  pod 'Swinject'
 end
 
 target 'MemoCore' do
   inherit! :search_paths
+  pod 'Swinject'
 end
