@@ -75,13 +75,10 @@
 		8E0478BF271A55FD002BCD3E /* mvvm-example-memo */ = {
 			isa = PBXGroup;
 			children = (
+				8E0478E3271A74D8002BCD3E /* App */,
 				8E0478DB271A71A2002BCD3E /* Resources */,
-				8E0478C0271A55FD002BCD3E /* AppDelegate.swift */,
-				8E0478C2271A55FD002BCD3E /* SceneDelegate.swift */,
 				8E0478C4271A55FD002BCD3E /* ViewController.swift */,
 				8E0478C6271A55FD002BCD3E /* Main.storyboard */,
-				8E0478CB271A55FF002BCD3E /* LaunchScreen.storyboard */,
-				8E0478CE271A55FF002BCD3E /* Info.plist */,
 			);
 			path = "mvvm-example-memo";
 			sourceTree = "<group>";
@@ -94,6 +91,17 @@
 				8E0478DC271A71B5002BCD3E /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8E0478E3271A74D8002BCD3E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8E0478C0271A55FD002BCD3E /* AppDelegate.swift */,
+				8E0478C2271A55FD002BCD3E /* SceneDelegate.swift */,
+				8E0478CB271A55FF002BCD3E /* LaunchScreen.storyboard */,
+				8E0478CE271A55FF002BCD3E /* Info.plist */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		9B73F0D16DC24F75B2DC9AB1 /* Pods */ = {
@@ -432,7 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "mvvm-example-memo/Info.plist";
+				INFOPLIST_FILE = "mvvm-example-memo/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -460,7 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "mvvm-example-memo/Info.plist";
+				INFOPLIST_FILE = "mvvm-example-memo/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
