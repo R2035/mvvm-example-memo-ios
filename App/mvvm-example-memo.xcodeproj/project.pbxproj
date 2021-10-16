@@ -114,6 +114,7 @@
 			buildPhases = (
 				063E13775AAB5C6701350866 /* [CP] Check Pods Manifest.lock */,
 				8E0478DA271A7178002BCD3E /* SwiftGen */,
+				8E0478E0271A72A8002BCD3E /* SwiftFormat */,
 				8E0478B9271A55FD002BCD3E /* Sources */,
 				8E0478BA271A55FD002BCD3E /* Frameworks */,
 				8E0478BB271A55FD002BCD3E /* Resources */,
@@ -232,6 +233,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "SWIFTGEN=\"${SRCROOT}/Pods/SwiftGen/bin/swiftgen\"\nSWIFTGEN_TEMPLATE_DIR=\"${SRCROOT}/Pods/SwiftGen/templates/\"\nif which $SWIFTGEN >/dev/null; then\n$SWIFTGEN config run --config \"$PROJECT_DIR/swiftgen.yml\"\nelse\necho \"warning: SwiftGen doesn't exist.\"\nfi\n";
+		};
+		8E0478E0271A72A8002BCD3E /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat --verbose \"$PROJECT_DIR/$TARGET_NAME\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
