@@ -26,7 +26,7 @@ final class EditingMemoViewController: UIViewController, UITextViewDelegate {
     }()
 
     private lazy var saveButton: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonDidTouchUpInside))
+        UIBarButtonItem(title: L10n.A02.saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonDidTouchUpInside))
     }()
 
     private let viewModel: EditingMemoViewModel

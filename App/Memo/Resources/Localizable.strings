@@ -9,4 +9,4 @@
 "A01.Title" = "メモ一覧";
 
 "A02.Title" = "メモ編集";
-"A02.AlertTitleDeleteMemo" = "このメモを削除しますか？";
+"A02.SaveButtonTitle" = "保存";
