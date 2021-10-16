@@ -37,7 +37,7 @@ final class MemoListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MemoListCell.self)
-        cell.update(title: "タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル", body: "本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文")
+        cell.update(body: "本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文")
         return cell
     }
 

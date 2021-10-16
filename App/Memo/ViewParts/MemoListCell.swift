@@ -11,14 +11,6 @@ import UIKit
 
 /// A01 メモ一覧画面のセル
 final class MemoListCell: UITableViewCell, Reusable {
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .bold)
-        label.setContentHuggingPriority(.required, for: .vertical)
-        return label
-    }()
-
     private lazy var bodyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -31,20 +23,10 @@ final class MemoListCell: UITableViewCell, Reusable {
 
         selectionStyle = .default
 
-        contentView.addSubview(titleLabel)
         contentView.addSubview(bodyLabel)
 
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
-
         bodyLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().offset(-16)
-            make.leading.equalTo(titleLabel)
-            make.trailing.equalTo(titleLabel)
+            make.edges.equalToSuperview().inset(16)
         }
     }
 
@@ -53,8 +35,7 @@ final class MemoListCell: UITableViewCell, Reusable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func update(title: String, body: String) {
-        titleLabel.text = title
+    func update(body: String) {
         bodyLabel.text = body
     }
 }
