@@ -16,6 +16,8 @@ final class MemoListViewModel {
 
     private let _memos = CurrentValueSubject<[Memo], Never>([])
 
+    private let _searchText = CurrentValueSubject<String, Never>("")
+
     private let _destination = PassthroughSubject<MemoListDestination, Never>()
 
     private let memoRepository: MemoRepository
@@ -33,7 +35,14 @@ final class MemoListViewModel {
 
         self.memoRepository = memoRepository
 
-        memoRepository.read(input: .all)
+        _searchText
+            .flatMap { searchText -> AnyPublisher<[Memo], Never> in
+                if searchText.isEmpty {
+                    return memoRepository.read(input: .all)
+                } else {
+                    return memoRepository.read(input: .contains(body: searchText))
+                }
+            }
             .sink { [weak self] memos in
                 self?._memos.send(memos)
             }
@@ -47,5 +56,13 @@ final class MemoListViewModel {
 
     func addButtonDidTouchUpInside() {
         _destination.send(.editingMemo(memo: nil))
+    }
+
+    func searchTextFieldTextDidChange(searchText: String) {
+        _searchText.send(searchText)
+    }
+
+    func searchBarCancelButtonClicked() {
+        _searchText.send("")
     }
 }

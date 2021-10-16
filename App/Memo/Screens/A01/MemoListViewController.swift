@@ -10,7 +10,7 @@ import MemoCore
 import UIKit
 
 /// A01 メモ一覧画面
-final class MemoListViewController: UITableViewController {
+final class MemoListViewController: UITableViewController, UISearchBarDelegate {
     private lazy var searchController: UISearchController = {
         UISearchController(searchResultsController: nil)
     }()
@@ -34,6 +34,8 @@ final class MemoListViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
 
         tableView.register(cellType: MemoListCell.self)
+
+        searchController.searchBar.delegate = self
 
         viewModel.memos
             .sink { [weak self] memos in
@@ -73,6 +75,16 @@ final class MemoListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         84
+    }
+
+    // MARK: UISearchBarDelegate
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchTextFieldTextDidChange(searchText: searchText)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.searchBarCancelButtonClicked()
     }
 
     @objc func addButtonDidTouchUpInside() {

@@ -10,5 +10,7 @@ import Foundation
 public enum MemoRepositoryInputRead {
     case all
 
+    case contains(body: String)
+
     case id(id: MemoId)
 }

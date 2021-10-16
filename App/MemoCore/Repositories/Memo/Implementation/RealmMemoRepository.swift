@@ -125,6 +125,9 @@ final class RealmMemoRepository: MemoRepository {
         switch input {
         case .all:
             return realm.objects(RealmMemoObject.self)
+        case let .contains(body):
+            let predicate = NSPredicate(format: "body CONTAINS[c] %@", body)
+            return realm.objects(RealmMemoObject.self).filter(predicate)
         case let .id(id):
             let predicate = NSPredicate(format: "id == %@", id.value)
             return realm.objects(RealmMemoObject.self).filter(predicate)
