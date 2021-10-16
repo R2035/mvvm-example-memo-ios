@@ -11,6 +11,11 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum A01 {
+    /// メモ一覧
+    internal static let title = L10n.tr("Localizable", "A01.Title")
+  }
+
   internal enum A02 {
     /// このメモを削除しますか？
     internal static let alertTitleDeleteMemo = L10n.tr("Localizable", "A02.AlertTitleDeleteMemo")

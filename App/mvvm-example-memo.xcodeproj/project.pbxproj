@@ -15,6 +15,7 @@
 		8E0478CD271A55FF002BCD3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E0478CB271A55FF002BCD3E /* LaunchScreen.storyboard */; };
 		8E0478DD271A71B5002BCD3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E0478DC271A71B5002BCD3E /* Localizable.strings */; };
 		8E0478DF271A7286002BCD3E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0478DE271A7286002BCD3E /* Strings.swift */; };
+		8E0478E8271A791D002BCD3E /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0478E7271A791D002BCD3E /* MemoListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8E0478CE271A55FF002BCD3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E0478DC271A71B5002BCD3E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		8E0478DE271A7286002BCD3E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		8E0478E7271A791D002BCD3E /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		B07091FFFE1A49F255EEA8B5 /* Pods-mvvm-example-memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mvvm-example-memo.debug.xcconfig"; path = "Target Support Files/Pods-mvvm-example-memo/Pods-mvvm-example-memo.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0917E75F6037C03E76BC7C /* Pods-mvvm-example-memo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mvvm-example-memo.release.xcconfig"; path = "Target Support Files/Pods-mvvm-example-memo/Pods-mvvm-example-memo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				8E0478E3271A74D8002BCD3E /* App */,
 				8E0478DB271A71A2002BCD3E /* Resources */,
 				8E0478E4271A754F002BCD3E /* Screens */,
+				8E0478E6271A7904002BCD3E /* ViewParts */,
 			);
 			path = "mvvm-example-memo";
 			sourceTree = "<group>";
@@ -115,6 +118,14 @@
 				8E0478C4271A55FD002BCD3E /* MemoListViewController.swift */,
 			);
 			path = A01;
+			sourceTree = "<group>";
+		};
+		8E0478E6271A7904002BCD3E /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				8E0478E7271A791D002BCD3E /* MemoListCell.swift */,
+			);
+			path = ViewParts;
 			sourceTree = "<group>";
 		};
 		9B73F0D16DC24F75B2DC9AB1 /* Pods */ = {
@@ -300,6 +311,7 @@
 			files = (
 				8E0478C5271A55FD002BCD3E /* MemoListViewController.swift in Sources */,
 				8E0478C1271A55FD002BCD3E /* AppDelegate.swift in Sources */,
+				8E0478E8271A791D002BCD3E /* MemoListCell.swift in Sources */,
 				8E0478DF271A7286002BCD3E /* Strings.swift in Sources */,
 				8E0478C3271A55FD002BCD3E /* SceneDelegate.swift in Sources */,
 			);
