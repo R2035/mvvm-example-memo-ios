@@ -14,7 +14,7 @@ final class MemoListCell: UITableViewCell, Reusable {
     private lazy var bodyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 11, weight: .regular)
+        label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
 
