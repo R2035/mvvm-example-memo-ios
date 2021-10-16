@@ -1,0 +1,7 @@
+input_dir: mvvm-example-memo
+output_dir: mvvm-example-memo/Resources
+strings:
+  inputs: Resources/Localizable.strings
+  outputs:
+    templateName: structured-swift5
+    output: Strings.swift
