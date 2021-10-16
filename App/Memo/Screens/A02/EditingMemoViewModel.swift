@@ -13,6 +13,8 @@ final class EditingMemoViewModel {
 
     let destination: AnyPublisher<EditingMemoDestination, Never>
 
+    let isDeleteButtonEnabled: AnyPublisher<Bool, Never>
+
     private let _body: CurrentValueSubject<String, Never>
 
     private let _destination = PassthroughSubject<EditingMemoDestination, Never>()
@@ -29,6 +31,10 @@ final class EditingMemoViewModel {
             .eraseToAnyPublisher()
 
         destination = _destination
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+
+        isDeleteButtonEnabled = CurrentValueSubject<Bool, Never>(memo?.id != nil)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 

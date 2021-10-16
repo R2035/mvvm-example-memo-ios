@@ -78,6 +78,12 @@ final class EditingMemoViewController: UIViewController, UITextViewDelegate {
                 self?.transitionTo(destination: destination)
             }
             .store(in: &cancellables)
+
+        viewModel.isDeleteButtonEnabled
+            .sink { [weak self] isEnabled in
+                self?.deleteButton.isEnabled = isEnabled
+            }
+            .store(in: &cancellables)
     }
 
     // MARK: UITextViewDelegate
