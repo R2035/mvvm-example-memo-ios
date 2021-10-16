@@ -30,8 +30,6 @@ final class EditingMemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController!.navigationBar.backgroundColor = .systemBackground
-
         title = L10n.A02.title
 
         view.backgroundColor = .systemBackground
