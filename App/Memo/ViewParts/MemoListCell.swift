@@ -1,6 +1,6 @@
 //
 //  MemoListCell.swift
-//  mvvm-example-memo
+//  Memo
 //
 //  Created by oe on 2021/10/16.
 //
