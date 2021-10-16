@@ -7,8 +7,6 @@
 
 import Foundation
 
-public enum MemoId {
-    case unregistered
-
-    case registered(value: String)
+public struct MemoId {
+    public let value: String
 }

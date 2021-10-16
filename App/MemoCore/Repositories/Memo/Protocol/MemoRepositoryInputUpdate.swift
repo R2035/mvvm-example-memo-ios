@@ -8,5 +8,5 @@
 import Foundation
 
 public enum MemoRepositoryInputUpdate {
-    case memo(value: Memo)
+    case memo(memo: Memo)
 }
