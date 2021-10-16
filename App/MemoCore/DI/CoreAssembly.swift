@@ -5,6 +5,7 @@
 //  Created by oe on 2021/10/16.
 //
 
+import RealmSwift
 import Swinject
 
 public final class CoreAssembly: Assembly {
@@ -13,8 +14,17 @@ public final class CoreAssembly: Assembly {
     // MARK: Assembly
 
     public func assemble(container: Container) {
-        container.register(MemoRepository.self) { _ in
-            RealmMemoRepository()
+        do {
+            let realm = try Realm()
+            container.register(Realm.self) { _ in
+                realm
+            }.inObjectScope(.container)
+        } catch {
+            fatalError(error.localizedDescription)
         }
+
+        container.register(MemoRepository.self) { resolver in
+            RealmMemoRepository(realm: resolver.resolve())
+        }.inObjectScope(.container)
     }
 }
