@@ -16,7 +16,7 @@ final class MemoListViewController: UITableViewController {
     }()
 
     private lazy var addButton: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didAddButtonTouchUpInside))
+        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidTouchUpInside))
     }()
 
     private let viewModel: MemoListViewModel = AppDelegate.assembler.resolver.resolve()
@@ -64,7 +64,7 @@ final class MemoListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.didTableViewSelectRowAt(indexPath: indexPath)
+        viewModel.tableViewDidSelectRowAt(indexPath: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -75,8 +75,8 @@ final class MemoListViewController: UITableViewController {
         84
     }
 
-    @objc func didAddButtonTouchUpInside() {
-        viewModel.didAddButtonTouchUpInside()
+    @objc func addButtonDidTouchUpInside() {
+        viewModel.addButtonDidTouchUpInside()
     }
 
     private func update(memos: [Memo]) {
@@ -87,8 +87,8 @@ final class MemoListViewController: UITableViewController {
 
     private func transitionTo(destination: MemoListDestination) {
         switch destination {
-        case .editingMemo:
-            let editingMemoViewController = EditingMemoViewController()
+        case let .editingMemo(memo):
+            let editingMemoViewController = EditingMemoViewController(memo: memo)
             navigationController?.pushViewController(editingMemoViewController, animated: true)
         }
     }

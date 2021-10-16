@@ -9,4 +9,6 @@ import Foundation
 
 public enum MemoRepositoryInputRead {
     case all
+
+    case id(id: MemoId)
 }

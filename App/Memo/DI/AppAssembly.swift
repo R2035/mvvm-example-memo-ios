@@ -16,5 +16,9 @@ final class AppAssembly: Assembly {
         container.register(MemoListViewModel.self) { resolver in
             MemoListViewModel(memoRepository: resolver.resolve())
         }
+
+        container.register(EditingMemoViewModel.self) { resolver, memo in
+            EditingMemoViewModel(memoRepository: resolver.resolve(), memo: memo)
+        }
     }
 }

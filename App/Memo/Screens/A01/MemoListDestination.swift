@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import MemoCore
 
 enum MemoListDestination {
-    case editingMemo
+    case editingMemo(memo: Memo?)
 }

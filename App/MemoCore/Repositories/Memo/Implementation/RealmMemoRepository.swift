@@ -7,22 +7,29 @@
 
 import Combine
 import RealmSwift
+import SwiftUI
 import UIKit
 
 /// Realmを使ったMemoRepositoryの実装
 final class RealmMemoRepository: MemoRepository {
     private let realm: Realm
 
-    private let notified = PassthroughSubject<Void, Never>()
+    private let notified: PassthroughSubject<Void, Never>
 
-    private lazy var token: NotificationToken = {
-        realm.observe { [weak self] notification, realm in
-            self?.notified.send(())
-        }
-    }()
+    private var cancellables = Set<AnyCancellable>()
+
+    private let token: NotificationToken
 
     init(realm: Realm) {
         self.realm = realm
+
+        let notified = PassthroughSubject<Void, Never>()
+
+        self.notified = notified
+
+        token = realm.observe { _, _ in
+            notified.send(())
+        }
     }
 
     deinit {
@@ -36,8 +43,9 @@ final class RealmMemoRepository: MemoRepository {
             do {
                 try self?.realm.write {
                     switch input {
-                    case let .memo(value):
-                        let realmMemoObject = RealmMemoRepository.convert(memo: value)
+                    case let .memo(body):
+                        let realmMemoObject = RealmMemoObject()
+                        realmMemoObject.body = body
                         self?.realm.add(realmMemoObject, update: .all)
                     }
                 }
@@ -50,11 +58,17 @@ final class RealmMemoRepository: MemoRepository {
     func delete(input: MemoRepositoryInputDelete) {
         DispatchQueue.main.async { [weak self] in
             do {
-                try self?.realm.write {
+                guard let self = self else {
+                    return
+                }
+
+                try self.realm.write {
                     switch input {
-                    case let .memo(value):
-                        let realmMemoObject = RealmMemoRepository.convert(memo: value)
-                        self?.realm.delete(realmMemoObject)
+                    case let .memo(id):
+                        guard let realmMemoObject = self.readRealm(input: .id(id: id)).first else {
+                            fatalError("RealmMemoObject does not exist for id: \(id.value)")
+                        }
+                        self.realm.delete(realmMemoObject)
                     }
                 }
             } catch {
@@ -64,23 +78,41 @@ final class RealmMemoRepository: MemoRepository {
     }
 
     func read(input: MemoRepositoryInputRead) -> AnyPublisher<[Memo], Never> {
-        notified.map { [weak self] in
-            self?.readRealm(input: input).map { realmMemoObject in
-                RealmMemoRepository.convert(realmMemoObject: realmMemoObject)
+        let initialValue = readRealm(input: input)
+        let memos = CurrentValueSubject<Results<RealmMemoObject>, Never>(initialValue)
 
-            } ?? []
-        }
-        .eraseToAnyPublisher()
+        notified
+            .sink { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                memos.send(self.readRealm(input: input))
+            }
+            .store(in: &cancellables)
+
+        return memos
+            .map { realmMemoObjects in
+                realmMemoObjects.map { realmMemoObject in
+                    RealmMemoRepository.convert(realmMemoObject: realmMemoObject)
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     func update(input: MemoRepositoryInputUpdate) {
         DispatchQueue.main.async { [weak self] in
             do {
-                try self?.realm.write {
+                guard let self = self else {
+                    return
+                }
+                try self.realm.write {
                     switch input {
-                    case let .memo(value):
-                        let realmMemoObject = RealmMemoRepository.convert(memo: value)
-                        self?.realm.add(realmMemoObject, update: .modified)
+                    case let .memo(memo):
+                        guard let realmMemoObject = self.readRealm(input: .id(id: memo.id)).first else {
+                            fatalError("RealmMemoObject does not exist for id: \(memo.id.value)")
+                        }
+                        realmMemoObject.body = memo.body
+                        self.realm.add(realmMemoObject, update: .modified)
                     }
                 }
             } catch {
@@ -93,19 +125,13 @@ final class RealmMemoRepository: MemoRepository {
         switch input {
         case .all:
             return realm.objects(RealmMemoObject.self)
+        case let .id(id):
+            let predicate = NSPredicate(format: "id == %@", id.value)
+            return realm.objects(RealmMemoObject.self).filter(predicate)
         }
-    }
-
-    private static func convert(memo: Memo) -> RealmMemoObject {
-        let realmMemoObject = RealmMemoObject()
-        if case let .registered(value) = memo.id {
-            realmMemoObject.id = value
-        }
-        realmMemoObject.body = memo.body
-        return realmMemoObject
     }
 
     private static func convert(realmMemoObject: RealmMemoObject) -> Memo {
-        Memo(id: .registered(value: realmMemoObject.id), body: realmMemoObject.body)
+        Memo(id: MemoId(value: realmMemoObject.id), body: realmMemoObject.body)
     }
 }

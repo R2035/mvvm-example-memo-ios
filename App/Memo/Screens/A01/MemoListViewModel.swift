@@ -14,12 +14,16 @@ final class MemoListViewModel {
 
     let destination: AnyPublisher<MemoListDestination, Never>
 
+    private let _memos = CurrentValueSubject<[Memo], Never>([])
+
     private let _destination = PassthroughSubject<MemoListDestination, Never>()
 
     private let memoRepository: MemoRepository
 
+    private var cancellables = Set<AnyCancellable>()
+
     init(memoRepository: MemoRepository) {
-        memos = memoRepository.read(input: .all)
+        memos = _memos
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 
@@ -28,13 +32,20 @@ final class MemoListViewModel {
             .eraseToAnyPublisher()
 
         self.memoRepository = memoRepository
+
+        memoRepository.read(input: .all)
+            .sink { [weak self] memos in
+                self?._memos.send(memos)
+            }
+            .store(in: &cancellables)
     }
 
-    func didTableViewSelectRowAt(indexPath: IndexPath) {
-        _destination.send(.editingMemo)
+    func tableViewDidSelectRowAt(indexPath: IndexPath) {
+        let memo = _memos.value[indexPath.row]
+        _destination.send(.editingMemo(memo: memo))
     }
 
-    func didAddButtonTouchUpInside() {
-        _destination.send(.editingMemo)
+    func addButtonDidTouchUpInside() {
+        _destination.send(.editingMemo(memo: nil))
     }
 }

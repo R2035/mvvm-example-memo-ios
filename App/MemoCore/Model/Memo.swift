@@ -11,4 +11,9 @@ public struct Memo {
     public let id: MemoId
 
     public let body: String
+
+    public init(id: MemoId, body: String) {
+        self.id = id
+        self.body = body
+    }
 }
