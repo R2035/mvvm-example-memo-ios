@@ -4,7 +4,6 @@ inhibit_all_warnings!
 
 target 'Memo' do
   inherit! :search_paths
-  pod 'RealmSwift'
   pod 'Reusable'
   pod 'SnapKit'
   pod 'SwiftFormat/CLI'
@@ -15,5 +14,6 @@ end
 
 target 'MemoCore' do
   inherit! :search_paths
+  pod 'RealmSwift'
   pod 'Swinject'
 end
