@@ -65,9 +65,7 @@ final class RealmMemoRepository: MemoRepository {
                 try self.realm.write {
                     switch input {
                     case let .memo(id):
-                        guard let realmMemoObject = self.readRealm(input: .id(id: id)).first else {
-                            fatalError("RealmMemoObject does not exist for id: \(id.value)")
-                        }
+                        let realmMemoObject = self.readRealm(id: id)
                         self.realm.delete(realmMemoObject)
                     }
                 }
@@ -108,9 +106,7 @@ final class RealmMemoRepository: MemoRepository {
                 try self.realm.write {
                     switch input {
                     case let .memo(memo):
-                        guard let realmMemoObject = self.readRealm(input: .id(id: memo.id)).first else {
-                            fatalError("RealmMemoObject does not exist for id: \(memo.id.value)")
-                        }
+                        let realmMemoObject = self.readRealm(id: memo.id)
                         realmMemoObject.body = memo.body
                         self.realm.add(realmMemoObject, update: .modified)
                     }
@@ -121,15 +117,20 @@ final class RealmMemoRepository: MemoRepository {
         }
     }
 
+    private func readRealm(id: MemoId) -> RealmMemoObject {
+        let predicate = NSPredicate(format: "id == %@", id.value)
+        guard let realmMemoObject = realm.objects(RealmMemoObject.self).filter(predicate).first else {
+            fatalError("RealmMemoObject does not exist for id: \(id.value)")
+        }
+        return realmMemoObject
+    }
+
     private func readRealm(input: MemoRepositoryInputRead) -> Results<RealmMemoObject> {
         switch input {
         case .all:
             return realm.objects(RealmMemoObject.self)
         case let .contains(body):
             let predicate = NSPredicate(format: "body CONTAINS[c] %@", body)
-            return realm.objects(RealmMemoObject.self).filter(predicate)
-        case let .id(id):
-            let predicate = NSPredicate(format: "id == %@", id.value)
             return realm.objects(RealmMemoObject.self).filter(predicate)
         }
     }
