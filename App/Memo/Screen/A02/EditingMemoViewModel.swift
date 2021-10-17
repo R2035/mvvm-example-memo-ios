@@ -13,8 +13,6 @@ final class EditingMemoViewModel {
 
     let destination: AnyPublisher<EditingMemoDestination, Never>
 
-    let isDeleteButtonEnabled: AnyPublisher<Bool, Never>
-
     private let _body: CurrentValueSubject<String, Never>
 
     private let _destination = PassthroughSubject<EditingMemoDestination, Never>()
@@ -34,10 +32,6 @@ final class EditingMemoViewModel {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 
-        isDeleteButtonEnabled = CurrentValueSubject<Bool, Never>(memo?.id != nil)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-
         memoId = memo?.id
 
         self.memoRepository = memoRepository
@@ -49,8 +43,9 @@ final class EditingMemoViewModel {
 
     func deleteButtonDidTouchUpInside() {
         guard let memoId = memoId else {
-            return
+            fatalError("Delete button cannot be tapped when memoId is nil.")
         }
+
         memoRepository.delete(input: .memo(id: memoId))
 
         _destination.send(.pop)
