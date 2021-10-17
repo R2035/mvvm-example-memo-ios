@@ -41,6 +41,12 @@ final class EditingMemoViewController: UIViewController, UITextViewDelegate {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
+
+        if memo == nil {
+            navigationItem.rightBarButtonItems = [saveButton]
+        } else {
+            navigationItem.rightBarButtonItems = [deleteButton, saveButton]
+        }
     }
 
     @available(*, unavailable)
@@ -52,8 +58,6 @@ final class EditingMemoViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         title = L10n.A02.title
-
-        navigationItem.rightBarButtonItems = [deleteButton, saveButton]
 
         view.backgroundColor = .systemBackground
         view.addSubview(bodyTextView)
@@ -76,12 +80,6 @@ final class EditingMemoViewController: UIViewController, UITextViewDelegate {
         viewModel.destination
             .sink { [weak self] destination in
                 self?.transitionTo(destination: destination)
-            }
-            .store(in: &cancellables)
-
-        viewModel.isDeleteButtonEnabled
-            .sink { [weak self] isEnabled in
-                self?.deleteButton.isEnabled = isEnabled
             }
             .store(in: &cancellables)
     }
