@@ -160,21 +160,21 @@
 			children = (
 				8E0478E3271A74D8002BCD3E /* App */,
 				8E04796B271A9B05002BCD3E /* DI */,
-				8E0478DB271A71A2002BCD3E /* Resources */,
-				8E0478E4271A754F002BCD3E /* Screens */,
-				8E0478E6271A7904002BCD3E /* ViewParts */,
+				8E0478DB271A71A2002BCD3E /* Resource */,
+				8E0478E4271A754F002BCD3E /* Screen */,
+				8E0478E6271A7904002BCD3E /* View */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
 		};
-		8E0478DB271A71A2002BCD3E /* Resources */ = {
+		8E0478DB271A71A2002BCD3E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				8E0478C9271A55FF002BCD3E /* Assets.xcassets */,
 				8E0478DE271A7286002BCD3E /* Strings.swift */,
 				8E0478DC271A71B5002BCD3E /* Localizable.strings */,
 			);
-			path = Resources;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		8E0478E3271A74D8002BCD3E /* App */ = {
@@ -188,13 +188,13 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		8E0478E4271A754F002BCD3E /* Screens */ = {
+		8E0478E4271A754F002BCD3E /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				8E0478E5271A75CD002BCD3E /* A01 */,
 				8E047975271AA17E002BCD3E /* A02 */,
 			);
-			path = Screens;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		8E0478E5271A75CD002BCD3E /* A01 */ = {
@@ -209,12 +209,12 @@
 			path = A01;
 			sourceTree = "<group>";
 		};
-		8E0478E6271A7904002BCD3E /* ViewParts */ = {
+		8E0478E6271A7904002BCD3E /* View */ = {
 			isa = PBXGroup;
 			children = (
 				8E0478E7271A791D002BCD3E /* MemoListCell.swift */,
 			);
-			path = ViewParts;
+			path = View;
 			sourceTree = "<group>";
 		};
 		8E047951271A9401002BCD3E /* MemoCore */ = {
@@ -222,9 +222,9 @@
 			children = (
 				8E047952271A9401002BCD3E /* MemoCore.h */,
 				8E04795F271A9778002BCD3E /* DI */,
-				8E047970271A9BBB002BCD3E /* Extensions */,
+				8E047970271A9BBB002BCD3E /* Extension */,
 				8E04797A271AB50C002BCD3E /* Model */,
-				8E047962271A97B8002BCD3E /* Repositories */,
+				8E047962271A97B8002BCD3E /* Repository */,
 			);
 			path = MemoCore;
 			sourceTree = "<group>";
@@ -237,19 +237,19 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
-		8E047962271A97B8002BCD3E /* Repositories */ = {
+		8E047962271A97B8002BCD3E /* Repository */ = {
 			isa = PBXGroup;
 			children = (
 				8E047966271A9907002BCD3E /* Memo */,
 			);
-			path = Repositories;
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		8E047966271A9907002BCD3E /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				8E047985271AB80F002BCD3E /* Contract */,
 				8E047986271AB81C002BCD3E /* Implementation */,
-				8E047985271AB80F002BCD3E /* Protocol */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -262,12 +262,12 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
-		8E047970271A9BBB002BCD3E /* Extensions */ = {
+		8E047970271A9BBB002BCD3E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				8E047973271A9C39002BCD3E /* Resolver+resolve.swift */,
 			);
-			path = Extensions;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		8E047975271AA17E002BCD3E /* A02 */ = {
@@ -289,7 +289,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		8E047985271AB80F002BCD3E /* Protocol */ = {
+		8E047985271AB80F002BCD3E /* Contract */ = {
 			isa = PBXGroup;
 			children = (
 				8E047967271A991B002BCD3E /* MemoRepository.swift */,
@@ -298,7 +298,7 @@
 				8E047978271AB4A2002BCD3E /* MemoRepositoryInputRead.swift */,
 				8E047981271AB692002BCD3E /* MemoRepositoryInputUpdate.swift */,
 			);
-			path = Protocol;
+			path = Contract;
 			sourceTree = "<group>";
 		};
 		8E047986271AB81C002BCD3E /* Implementation */ = {

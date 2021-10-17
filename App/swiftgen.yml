@@ -1,7 +1,7 @@
 input_dir: Memo
-output_dir: Memo/Resources
+output_dir: Memo/Resource
 strings:
-  inputs: Resources/Localizable.strings
+  inputs: Resource/Localizable.strings
   outputs:
     templateName: structured-swift5
     output: Strings.swift
